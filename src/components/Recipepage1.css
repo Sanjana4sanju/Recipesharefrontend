@@ -1,0 +1,91 @@
+body {
+    margin: 0px;
+    background-color:blanchedalmond
+ }
+ 
+ .navbar6 {
+  height: 80px;
+  width:100%;
+  background-color: aliceblue;
+  display: flex;
+  
+}
+.logo {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+img {
+    width: 50px;
+    height: 50px;
+}
+
+ul {
+    padding-top: 20px;
+    padding-left: 40px;
+}
+
+ul li {
+    
+    display: inline;
+    padding-left: 70px;
+}
+
+.login {
+    padding-left: 600px;
+    padding-top: 15px;
+    justify-content: center;
+    display: flex;
+  gap: 15px;
+  
+}
+
+.login button {
+  padding: 10px 20px;
+  justify-content: center;
+  border: 2px solid darkorange;
+  background-color: #ffffff;
+  color:darkorange;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.login button:hover {
+  background-color:darkorange;
+  color: #ffffff;
+}
+.recipe1 img {
+    width: 140px;
+    height: 150px;
+    margin-left: 10px;
+    margin-top: 10px;
+    
+}
+.mainbox {
+    background-color: #ffffff;
+    margin-top: 20px;
+   
+    margin-left: 300px;
+    height: 880px;
+    width: 800px;
+}
+.image1 {
+    display: flex;
+}
+h4 {
+    padding-left: 10px;
+}
+textarea{
+    margin-left: 10px;
+}
+button {
+    margin-left: 10px;
+    background-color: darkorange;
+    border-radius: 4px;
+}
+.footer {
+    width: 100%;
+    height: 80px;
+    background-color:slategrey;
+    bottom: 0;
+}

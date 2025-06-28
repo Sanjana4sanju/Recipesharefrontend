@@ -1,0 +1,102 @@
+ body {
+    margin: 0px;
+    background-color:blanchedalmond
+ }
+ 
+ .navbar1 {
+  height: 80px;
+  width:100%;
+  background-color: aliceblue;
+  display: flex;
+  
+}
+.logo {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+img {
+    width: 50px;
+    height: 50px;
+}
+
+ul {
+    padding-top: 20px;
+    padding-left: 40px;
+}
+
+ul li {
+    
+    display: inline;
+    padding-left: 70px;
+}
+
+.login {
+    padding-left: 600px;
+    padding-top: 15px;
+    justify-content: center;
+    display: flex;
+  gap: 15px;
+  
+}
+
+.login button {
+  padding: 10px 20px;
+  justify-content: center;
+  border: 2px solid darkorange;
+  background-color: #ffffff;
+  color:darkorange;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.login button:hover {
+  background-color:darkorange;
+  color: #ffffff;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form {
+    padding-top: 20px;
+    margin-top: 130px;
+    margin-left: 100px;
+    background-color:beige;
+    width: 400px;
+    margin: auto;
+    height: 560px;
+    padding-top: 20px;
+    padding-left: 130px;
+     border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.fun {
+    width: 300px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+form button {
+    margin-left: 5px;
+    margin-right: 60px;
+    width: 300px;
+    height: 50px;
+    background-color: darkorange;
+    color: #ffffff;
+}
+p{
+    padding-left: 30px;
+}
+a {
+    color: darkorange;
+}
+.footer {
+    width: 100%;
+    height: 80px;
+    background-color:slategrey;
+    bottom: 0;
+}

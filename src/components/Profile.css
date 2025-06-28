@@ -1,0 +1,142 @@
+body {
+    margin: 0px;
+    background-color:blanchedalmond
+ }
+ 
+ .navbar3 {
+  height: 80px;
+  width:100%;
+  background-color: aliceblue;
+  display: flex;
+  
+  
+}
+.logo {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+img {
+    width: 50px;
+    height: 50px;
+}
+h1 {
+    padding-left: 50px;
+}
+p {
+    font-size: 15px;
+}
+
+ul {
+    padding-top: 20px;
+    padding-left: 40px;
+}
+
+ul li {
+    
+    display: inline;
+    padding-left: 70px;
+    cursor: pointer;
+}
+
+.login {
+    padding-left: 600px;
+    padding-top: 15px;
+    justify-content: center;
+    display: flex;
+  gap: 15px;
+  
+}
+
+.login button {
+  padding: 10px 20px;
+  justify-content: center;
+  border: 2px solid darkorange;
+  background-color: #ffffff;
+  color:darkorange;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.login button:hover {
+  background-color:darkorange;
+  color: #ffffff;
+}
+
+.profilediv {
+    width:800px;
+    height:500px;
+    background-color: #ffffff;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+     border-radius: 5px;
+    margin-left: 350px;
+    margin-top: 30px;
+}
+
+.profilecard {
+  display: flex;
+  align-items: center; 
+  gap: 20px; 
+  padding: 20px;
+}
+#img1 {
+    clip-path: circle(50%);
+    width: 100px;
+    height:100px;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+p {
+    padding-left: 0;
+}
+.headings {
+    display: flex;
+    padding-left: 40px;
+    color: gray;
+    gap: 20px;
+}
+.headings:hover {
+  color: darkorange;
+  cursor: pointer;
+}
+.profileinfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-left: 40px;
+    margin-top: 20px;
+    width:1000px;
+}
+.section {
+    width: 220px;
+    height: 240px;
+    overflow: hidden;
+    
+    background-color:#ffffff;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+     border-radius: 5px;
+}
+.section img {
+    width: 100%;
+    height: 80px;
+}
+.section button {
+    margin-left: 40px;
+    width: 160px;
+    height: 35px;
+    border-radius: 6px;
+    background-color: darkorange;
+    color: #ffffff;
+}
+
+.footer {
+    width: 100%;
+    height: 80px;
+    background-color:slategrey
+}
