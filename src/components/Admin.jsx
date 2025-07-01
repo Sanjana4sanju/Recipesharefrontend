@@ -1,7 +1,20 @@
 
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import './Admin.css'
 
 function Admin() {
+
+  const[usercount,setusercount] = useState()
+  const[recipecount,setrecipecount] = useState()
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/getdashboardcount').then((res) => {
+       setusercount(res.data.usercount)
+       setrecipecount(res.data.recipecount)
+    })
+
+  },[])
     return(
         <div>
 
@@ -39,11 +52,11 @@ function Admin() {
                                          <h2>Welcome,Admin!</h2>
                                         <div className='sec sec1'>
                                             <h3>Total Users</h3>
-                                            <h1>12,345</h1>
+                                            <h1>{usercount}</h1>
                                         </div>
                                         <div className='sec sec2'>
                                             <h3>Total Recipes</h3>
-                                            <h1>5,678</h1>
+                                            <h1>{recipecount}</h1>
                                         </div>
                                         <div className='sec sec3'>
                                             <h3>Recipes approved</h3>

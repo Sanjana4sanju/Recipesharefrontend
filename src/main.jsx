@@ -16,6 +16,7 @@ import Recipepage3 from './components/Recipepage3.jsx';
 import Profile from './components/Profile.jsx';
 import Admin from './components/Admin.jsx'
 import User from './components/User.jsx'
+import Recipeman from './components/Recipeman.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
@@ -33,6 +34,7 @@ createRoot(document.getElementById('root')).render(
       <Route path='Profile' element={<Profile/>}/>
       <Route path='Admin' element={<Admin/>}/>
       <Route path='User' element={<User/>}/>
+      <Route path='Recipeman' element={<Recipeman/>}/>
 
     </Routes>
     </BrowserRouter>

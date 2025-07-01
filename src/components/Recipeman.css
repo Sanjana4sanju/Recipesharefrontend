@@ -1,0 +1,113 @@
+body {
+    margin: 0px;
+    background-color:blanchedalmond
+ }
+ 
+ .navbar12{
+  height: 80px;
+  width:100%;
+  background-color: darkorange;
+  display: flex;
+  color: #ffffff;
+  
+}
+.logo {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+img {
+    width: 50px;
+    height: 50px;
+}
+
+ul {
+    padding-top: 20px;
+    padding-left: 40px;
+}
+
+ul li {
+    
+    display: inline;
+    padding-left: 70px;
+}
+
+.login {
+    padding-left: 600px;
+    padding-top: 15px;
+    justify-content: center;
+    display: flex;
+  gap: 15px;
+  
+}
+
+.login button {
+  padding: 10px 20px;
+  justify-content: center;
+  border: 2px solid darkorange;
+  background-color: #ffffff;
+  color:darkorange;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.login button:hover {
+  background-color:darkorange;
+  color: #ffffff;
+}
+.mainsection {
+    display: flex;
+    padding: 20px;
+}
+
+
+.navigation {
+    width:170px;
+    height:600px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+     border-radius: 5px;
+    text-align: center;
+    
+    
+}
+.usersection {
+    width: 1200px;
+    height: 280px;
+    margin-left: 30px;
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+}
+.sec {
+    width:200px;
+    height: 200px;
+    background-color: #ffffff;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    margin-top: 30px;
+}
+h2 {
+    margin-top: 30px;
+}
+ p {
+    margin-top: 0px;
+    font-size: 20px;
+    padding-left: 30px;
+}
+
+h4 {
+    padding-left: 30px;
+    padding-top: 30px;
+    
+}
+
+h6 {
+    padding-right: 40px;
+}
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-left: 20px;
+}
