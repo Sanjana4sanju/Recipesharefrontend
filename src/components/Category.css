@@ -3,7 +3,7 @@ body {
     background-color:blanchedalmond
  }
  
- .navbar10{
+ .navbar11{
   height: 80px;
   width:100%;
   background-color: darkorange;
@@ -71,80 +71,45 @@ ul li {
     
     
 }
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-left: 20px;
+
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
 .usersection {
-    width: 1200px;
+    width: 1000px;
     height: 280px;
-    margin-left: 30px;
     margin-top: 30px;
     display: flex;
     gap: 30px;
+    
 }
-.sec {
-    width:200px;
+.sect {
+    width:400px;
     height: 200px;
     background-color: #ffffff;
      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     text-align: center;
     margin-top: 30px;
 }
-h2 {
-    margin-top: 30px;
+.searchbox {
+    margin-left: 60px;
+    float: left;
+    width: 950px;
+    height: 20px;
+    border-radius: 20px;
 }
- p {
-    margin-top: 0px;
-    font-size: 20px;
-    padding-left: 30px;
-}
-
-h4 {
-    padding-left: 30px;
-    padding-top: 30px;
-    
+.managesec {
+    margin-left: 40px;
 }
 
-h6 {
-    padding-right: 40px;
-}
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding-left: 20px;
-}
-.user{
-    width: 1200px;
-    height: 280px;
-    display: flex;
-    gap: 40px;
-    margin-top: 15px;
-}
-.growth {
-    width: 1400px;
-    height: 250px;
-    margin-left: 30px;
-    background-color: #ffffff;
-     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-.activity {
-    width: 700px;
-    height: 200px;
-    
-    background-color: #ffffff;
-     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-#green {
-    background-color: green;
-    color: #ffffff;
-}
-#violet {
-    background-color: violet;
-    color: #ffffff;
-}
-#red {
-    background-color: red;
-    color: #ffffff;
-}
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;

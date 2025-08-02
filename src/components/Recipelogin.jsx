@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import './Recipelogin.css'
 import images from './images/images.png';
+import { Link } from 'react-router-dom';
 
 
 function Recipelogin() {
@@ -59,6 +60,7 @@ function Recipelogin() {
                         <input className='new' type="password" placeholder='password' value={Password} onChange={(e) =>setpassword(e.target.value)}></input><br></br><br></br>
                         <p>{error}</p>
                          <button type="submit">Login</button><br></br>
+                         <Link to=''>Forgot Password?</Link>
                          </form> <br></br>
 
                          <div className='footer'>

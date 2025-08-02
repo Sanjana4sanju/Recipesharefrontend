@@ -55,6 +55,13 @@ ul li {
   background-color:darkorange;
   color: #ffffff;
 }
+.searchbox {
+    margin-left: 60px;
+    float: left;
+    width: 950px;
+    height: 20px;
+    border-radius: 20px;
+}
 .mainsection {
     display: flex;
     padding: 20px;

@@ -17,6 +17,11 @@ import Profile from './components/Profile.jsx';
 import Admin from './components/Admin.jsx'
 import User from './components/User.jsx'
 import Recipeman from './components/Recipeman.jsx'
+import Moderation from './components/Moderation.jsx'
+import Category from './components/Category.jsx'
+import Password from './components/Password.jsx';
+import Reset from './components/Reset.jsx';
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
@@ -35,7 +40,10 @@ createRoot(document.getElementById('root')).render(
       <Route path='Admin' element={<Admin/>}/>
       <Route path='User' element={<User/>}/>
       <Route path='Recipeman' element={<Recipeman/>}/>
-
+      <Route path='Moderation' element={<Moderation/>}/>
+      <Route path='Category' element={<Category/>}/>
+      <Route path='Password' element={<Password/>}/>
+      <Route path='Reset' element={<Reset/>}/>
     </Routes>
     </BrowserRouter>
     <App />

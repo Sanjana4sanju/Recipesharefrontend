@@ -2,22 +2,37 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import './Recipeman.css'
 
+
 function Recipeman() {
-    const[recipecount,setrecipecount] = useState([])
+
+  
+    
+    const[recipes,setrecipes] = useState([])
+    const[editIndex,seteditindex] = useState(null)
+  const[editedrecipe,seteditedrecipe] = useState([])
     const[search,setsearch] = useState()
     useEffect(() => {
     axios.get('http://localhost:3000/getrecipecount?search='+search).then((res) => {
-      setrecipecount(res.data)
+      setrecipes(res.data.recipes)
     })
     },[search])
     useEffect(() => {
        axios.get('http://localhost:3000/getrecipecount').then((res) => {
-      setrecipecount(res.data)
+      setrecipes(res.data.recipes)
+      
     })
 
     },[])
     const searchtext = (e) => {
        setsearch(e.target.value)
+    }
+
+    const handleapprove = (id,idx) => {
+      axios.put(`http://localhost:3000/approverecipe/`+ id).then((res) => {
+       recipes[idx].Approved = true
+       setrecipes([...recipes])
+      })
+       
     }
     return(
         <div>
@@ -55,7 +70,7 @@ function Recipeman() {
                                          <h2>Recipe management</h2>
                                         <div className='sec sec1'>
                                             <h3>Total Recipes</h3>
-                                            <h1>5,678</h1>
+                                            <h1>{recipes.length}</h1>
                                         </div>
                                         <div className='sec sec2'>
                                             <h3>Published Recipes</h3>
@@ -73,10 +88,10 @@ function Recipeman() {
 
                                     </div>
                                     <input
-            className="search"
+            className="searchbox"
             type="text"
             placeholder="🔍 Search for recipes,ingredients or cuisines.."
-          onChange={searchtext} value={search}/>
+          onChange={searchtext} value={search}/><button type='submit'>Search</button><br></br>
           <div className="managesec">
             <h3>All Recipes</h3>
 
@@ -88,15 +103,16 @@ function Recipeman() {
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
-              {recipecount.map((Recipe,i) => {
+              {recipes.map((recipe,i) => {
                 return(
                  <tr key={i}>
-                <td>{Recipe.Recipetitle}</td>
+                <td>{recipe.Recipetitle}</td>
                 <td>Bob Johnson</td>
                 <td>Main course</td>
                 <td>Active</td>
                 <td>
                   <button>Edit</button>
+                  {recipe.Approved?<button type='submit' onClick={(() => handleapprove(recipe._id,i))}>Approve</button>:<p>Approved</p>}
                 </td>
               </tr>
 
@@ -109,6 +125,7 @@ function Recipeman() {
                 <td>Active</td>
                 <td>
                   <button>Edit</button>
+                  <button>Approve</button>
                 </td>
               </tr>
               <tr>
@@ -118,6 +135,7 @@ function Recipeman() {
                 <td>Pending</td>
                 <td>
                   <button>Edit</button>
+                  <button>Approve</button>
                 </td>
               </tr>
               <tr>
@@ -127,6 +145,7 @@ function Recipeman() {
                 <td>Active</td>
                 <td>
                   <button>Edit</button>
+                  <button>Approve</button>
                 </td>
               </tr>
               </table>

@@ -66,14 +66,17 @@ ul li {
     margin-top: 20px;
    
     margin-left: 300px;
-    height: 880px;
-    width: 800px;
+    height: 1000px;
+    width: 1000px;
 }
 .image1 {
     display: flex;
 }
 h4 {
     padding-left: 10px;
+}
+p {
+    font-size: small;
 }
 textarea{
     margin-left: 10px;

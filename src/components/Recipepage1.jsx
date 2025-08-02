@@ -3,7 +3,7 @@ import spa from './images/spa.jpg'
 import axios from 'axios'
 import images from './images/images.png'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState,useRef } from 'react'
 
 function Recipepage1() {
 
@@ -13,6 +13,9 @@ function Recipepage1() {
     const[comments,setcomments] = useState([])
     const[text,settext] = useState("")
     const[saved,setsaved] = useState(false)
+    const dialogRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false); 
+  const[message,setmessage] = useState([]);
 
     const {id} = useParams()
 
@@ -42,10 +45,39 @@ function Recipepage1() {
         })
     }
 
+    const handlesave = () => {
+      axios.post(`http://localhost:3000/reports/`+ id,{Message:text},{headers:{Authorization:`Bearer ${localStorage.getItem("token")}`}}).then(() => {
+        window.location.reload()
+      })
+    }
+
     const savetext = (e) => {
    e.preventDefault()
    settext(e.target.value)
     }
+     useEffect(() => {
+    if (dialogRef.current) {
+      if (isOpen) {
+        
+        dialogRef.current.showModal();
+      } else {
+        dialogRef.current.close();
+      }
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    const dialogElement = dialogRef.current;
+    if (dialogElement) {
+      const handleNativeClose = () => {
+        setIsOpen(false); 
+      };
+      dialogElement.addEventListener('close', handleNativeClose);
+      return () => {
+        dialogElement.removeEventListener('close', handleNativeClose);
+      };
+    }
+  }, []);
     useEffect(() => {
       axios.get('http://localhost:3000/recipeshow/'+ id,{headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}}).then((res) => {
          console.log(res.data)
@@ -54,6 +86,8 @@ function Recipepage1() {
 
       })
     },[])
+
+    
 
      useEffect(()=> {
         axios.get(`http://localhost:3000/comments/`+ id).then((res) => {
@@ -70,6 +104,21 @@ function Recipepage1() {
             <div>Loading..</div>
         )
     }
+
+    
+    
+
+
+  
+    
+
+    const handleOpenDialog = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setIsOpen(false);
+  };
    
    
 
@@ -112,12 +161,25 @@ function Recipepage1() {
                                         {saved ?<button type='submit' disabled>Saved</button>:<button type='submit'onClick={savepost}>Save</button>}
                                         </div>
 
+
+                                        
+
                                          
                                     </div>
                                     <h4>📌 Ingredients</h4>
                                     <p style={{whiteSpace:"pre-wrap"}}>{recdetails.Ingredients}
 
                                     </p>
+                                     <button onClick={handleOpenDialog}>Report Recipe</button>
+                                     <dialog ref={dialogRef} onClose={handleCloseDialog} style={{ border: '2px solid #ccc', padding: '20px', borderRadius: '8px' }}>
+                                      
+                                        <textarea placeholder='reports'value={text} onChange={savetext} rows='6' cols='50'></textarea>
+                                        <button type='submit'onClick={handlesave}>Save</button>
+                                        
+                                        
+                                        
+                                      <button onClick={handleCloseDialog}>Close Dialog</button>
+                                      </dialog>
                                     <h4>📖Instructions</h4>
                                     <p style={{whiteSpace:"pre-wrap"}}>{recdetails.Instructions}
                                     </p>
@@ -136,9 +198,7 @@ function Recipepage1() {
                                    
 
                                   </div>
-                                   <div className='footer'>
-            
-          </div>
+                                  
 
         </div>
     )

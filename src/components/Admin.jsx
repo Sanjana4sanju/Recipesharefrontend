@@ -2,19 +2,73 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import './Admin.css'
+import { useParams } from 'react-router-dom'
+import {PieChart,Pie,Cell,Legend,Tooltip} from 'recharts'
 
 function Admin() {
 
+  const {id} = useParams()
+
   const[usercount,setusercount] = useState()
   const[recipecount,setrecipecount] = useState()
+  
+  const[recipeshow,setrecipeshow] = useState([])
+  const[editIndex,seteditindex] = useState(null)
+  const[editedrecipe,seteditedrecipe] = useState([])
+  const[approvedcount,setapprovedcount] = useState()
+  const[pendingcount,setpendingcount] = useState()
+  const[piechart,setpiechart] = useState()
 
+  const handleEdit = (recipe, index) => {
+  seteditindex(index);
+  seteditedrecipe({ ...recipe }); 
+};
+
+const handleChange = (e) => {
+
+  if(e.target.name == "Status")  {
+      if(e.target.value == "Approved") {
+        seteditedrecipe({...editedrecipe,Approved:true})
+      } else {
+        seteditedrecipe({...editedrecipe,Approved:false})
+      }
+  } else{
+    seteditedrecipe({ ...editedrecipe, [e.target.name]: e.target.value });
+  }
+  
+};
+
+const handleUpdate = async () => {
+  try {
+     await axios.put(`http://localhost:3000/updaterecipe/${editedrecipe._id}`, editedrecipe);
+    const updatedList = [...recipeshow]
+    updatedList[editIndex] = {...editedrecipe}
+    setrecipeshow(updatedList)
+    seteditindex(null)
+    alert("Recipe updated!");
+    seteditindex(null);
+    
+  } catch (error) {
+    console.error("Update failed", error);
+  }
+};
   useEffect(() => {
     axios.get('http://localhost:3000/getdashboardcount').then((res) => {
        setusercount(res.data.usercount)
        setrecipecount(res.data.recipecount)
+       setrecipeshow(res.data.recipeshow)
+       setapprovedcount(res.data.approvedcount)
+       setpendingcount(res.data.pendingcount)
     })
 
   },[])
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/piechartdata').then((res) => {
+      setpiechart(res.data)
+    })
+  },[])
+
     return(
         <div>
 
@@ -60,11 +114,11 @@ function Admin() {
                                         </div>
                                         <div className='sec sec3'>
                                             <h3>Recipes approved</h3>
-                                            <h1>5,500</h1>
+                                            <h1>{approvedcount}</h1>
                                         </div>
                                         <div className='sec sec4'>
                                             <h3>Pending for Review</h3>
-                                            <h1>128</h1>
+                                            <h1>{pendingcount}</h1>
                                         </div>
                                         
 
@@ -73,7 +127,11 @@ function Admin() {
                                     
                                      <div className='user'>
                                         <div className='growth'>
-                                        <h3>User growth Over time</h3>
+                                        <h3>Recipe Distribution</h3>
+                                        <PieChart width={200} height={160} ><Pie data={piechart} dataKey="total" nameKey="_id"  cx='50%' cy='50%' outerRadius={60} label>
+                                        {piechart && piechart.map((e,i) => {
+                                           return <Cell fill={['red','blue','green'][i%3]}></Cell>
+                                          })}</Pie><Legend></Legend><Tooltip></Tooltip></PieChart>
                                         </div>
                                         <div className='activity'>
                                           <h3 id='action'>Recent Activity</h3>  
@@ -95,29 +153,62 @@ function Admin() {
     <th>Status</th>
     <th>Access</th>
   </tr>
-  <tr>
-    <td>Classic Lassagna</td>
-    <td>Alice Smith</td>
-    <td>Approved</td>
-    <td><button>Edit</button></td>
+  {recipeshow.map((recipe,i) => {
+    return(
+      <tr key={i}>
+    <td>
+      {editIndex === i ? (
+        <input name="Recipetitle" value={editedrecipe.Recipetitle} onChange={handleChange}/>
+      ):(
+      recipe.Recipetitle
+      )}</td>
+    <td>
+      {editIndex === i ? (
+        <input
+          name="Author"
+          value={editedrecipe.Author || ''}
+          onChange={handleChange}
+        />
+      ):(recipe.Author || 'Alice Smith'
+      )}</td>
+    <td>
+      {editIndex === i ? (
+        <select name="Status" value={editedrecipe.Status || 'Pending'} onChange={handleChange}><option>Approved</option>
+        <option>Pending</option></select>
+      ):( recipe.Status || 'Approved' )}</td>
+    <td>{editIndex === i ? (
+        <button onClick={(() => {handleUpdate(recipe)})}>Save</button>
+      ) : (
+        <button onClick={() => handleEdit(recipe, i)}>Edit</button>
+      )}
+    </td>
+    
+    
   </tr>
+
+    )
+  })}
+  
   <tr>
     <td>Chicken Alfredo pizza </td>
     <td>Bob Johnson</td>
     <td>Pending</td>
     <td><button>Edit</button></td>
+  
   </tr>
   <tr>
     <td>Healthy Quinoa Salad</td>
     <td>Carol White</td>
     <td>Approved</td>
     <td><button>Edit</button></td>
+    
   </tr>
   <tr>
     <td>Chocolate Chip Cookies</td>
     <td>David Bob</td>
     <td>Pending</td>
     <td><button>Edit</button></td>
+    
   </tr>
  
 </table>

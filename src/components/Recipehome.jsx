@@ -18,6 +18,7 @@ function Recipehome() {
 
     const navigate = useNavigate()
     const[recipeshow,setrecipeshow] = useState([])
+    const[searchrec,setsearchrec] = useState('')
 
      const goToRecipe = () => {
     navigate('/Recipe');
@@ -41,11 +42,15 @@ function Recipehome() {
     navigate('/Recipepage3')
   }
   useEffect(() => {
-     axios.get('http://localhost:3000/recipeshow').then((res) => {
+     axios.get('http://localhost:3000/recipeshow?search='+ searchrec).then((res) => {
       console.log(res.data)
       setrecipeshow(res.data)
      })
-  },[])
+  },[searchrec])
+
+  const searchrecipe = (e) => {
+       setsearchrec(e.target.value)
+    }
     return(
         
             <div>
@@ -72,10 +77,10 @@ function Recipehome() {
                       <button type='submit'>Add your recipes</button> <br></br>
                       
                       </div><br></br>
-                      <input className='search' type ='text' placeholder='Search for recipes,ingredients or cuisines..       🔍'/>
+                      <input className='search' onChange={searchrecipe} value={searchrec} type ='text' placeholder='Search for recipes,ingredients or cuisines..       🔍'/>
 
                       <div className='container'>
-                        {recipeshow.map((recipe) => {
+                        {recipeshow?recipeshow.map((recipe) => {
                            return(
                             <div className='box'>
                               <img src={"http://localhost:3000/uploads/photos/"+ recipe.Recipeimage}/>
@@ -84,8 +89,8 @@ function Recipehome() {
                               <Link to={'/Recipepage/'+ recipe._id}>view Recipe</Link>
                               </div>
                            )
-                        })}
-                        <div className='box1 box'>
+                        }):(<p>No recipe show</p>)}
+                        {/* <div className='box1 box'>
                             <img src={spa} alt='spagetti'/>
                             <h3>Spaghetti Bolognese </h3>
                             <p>A classic italian pasta dish with a rich meat 
@@ -145,7 +150,7 @@ function Recipehome() {
                               
                            </p>
                             <button type='submit'>View Recipe</button>
-                        </div>
+                        </div> */}
 
                       </div><br></br>
                       <div className='footer'>
